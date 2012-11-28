@@ -1,57 +1,36 @@
-[submodule "plugin/vim/vimfiles/bundle/html5"]
-	path = plugin/vim/vimfiles/bundle/html5
-	url = git://github.com/othree/html5.vim.git
-[submodule "plugin/vim/vimfiles/bundle/nginx"]
-	path = plugin/vim/vimfiles/bundle/nginx
-	url = git://github.com/andersjanmyr/nginx-vim-syntax.git
-[submodule "plugin/vim/vimfiles/bundle/coffeescript"]
-	path = plugin/vim/vimfiles/bundle/coffeescript
-	url = git://github.com/kchmck/vim-coffee-script.git
-[submodule "plugin/vim/vimfiles/bundle/solarized"]
-	path = plugin/vim/vimfiles/bundle/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "plugin/vim/vimfiles/bundle/supertab"]
-	path = plugin/vim/vimfiles/bundle/supertab
-	url = git://github.com/ervandew/supertab.git
-[submodule "plugin/vim/vimfiles/bundle/commentary"]
-	path = plugin/vim/vimfiles/bundle/commentary
-	url = git://github.com/tpope/vim-commentary.git
-[submodule "plugin/vim/vimfiles/bundle/endwise"]
-	path = plugin/vim/vimfiles/bundle/endwise
-	url = git://github.com/tpope/vim-endwise.git
-[submodule "plugin/vim/vimfiles/bundle/markdown"]
-	path = plugin/vim/vimfiles/bundle/markdown
-	url = git://github.com/tpope/vim-markdown.git
-[submodule "plugin/vim/vimfiles/bundle/matchit"]
-	path = plugin/vim/vimfiles/bundle/matchit
-	url = git://github.com/edsono/vim-matchit.git
-[submodule "plugin/vim/vimfiles/bundle/rails"]
-	path = plugin/vim/vimfiles/bundle/rails
-	url = git://github.com/tpope/vim-rails.git
-[submodule "plugin/vim/vimfiles/bundle/repeat"]
-	path = plugin/vim/vimfiles/bundle/repeat
-	url = git://github.com/tpope/vim-repeat.git
-[submodule "plugin/vim/vimfiles/bundle/ruby"]
-	path = plugin/vim/vimfiles/bundle/ruby
-	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "plugin/vim/vimfiles/bundle/ruby-refactoring"]
-	path = plugin/vim/vimfiles/bundle/ruby-refactoring
-	url = git://github.com/ecomba/vim-ruby-refactoring.git
-[submodule "plugin/vim/vimfiles/bundle/surround"]
-	path = plugin/vim/vimfiles/bundle/surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule "plugin/vim/vimfiles/bundle/greplace"]
-	path = plugin/vim/vimfiles/bundle/greplace
-	url = git://github.com/vim-scripts/greplace.vim.git
-[submodule "plugin/vim/vimfiles/bundle/mustache"]
-	path = plugin/vim/vimfiles/bundle/mustache
-	url = git://github.com/juvenn/mustache.vim.git
-[submodule "plugin/vim/vimfiles/bundle/vroom"]
-	path = plugin/vim/vimfiles/bundle/vroom
-	url = git://github.com/skalnik/vim-vroom.git
-[submodule "plugin/vim/vimfiles/bundle/ctrlp"]
-	path = plugin/vim/vimfiles/bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
 [submodule "plugin/tmux/tmux-powerline"]
 	path = plugin/tmux/tmux-powerline
 	url = git://github.com/CapnKernul/tmux-powerline.git
+[submodule "plugin/vim/vimfiles/bundle/ctrlp"]
+	path = plugin/vim/vimfiles/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule "plugin/vim/vimfiles/bundle/vroom"]
+	path = plugin/vim/vimfiles/bundle/vroom
+	url = git://github.com/skalnik/vim-vroom.git
+[submodule "plugin/vim/vimfiles/bundle/surround"]
+	path = plugin/vim/vimfiles/bundle/surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "plugin/vim/vimfiles/bundle/ruby-refactoring"]
+	path = plugin/vim/vimfiles/bundle/ruby-refactoring
+	url = git://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "plugin/vim/vimfiles/bundle/repeat"]
+	path = plugin/vim/vimfiles/bundle/repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "plugin/vim/vimfiles/bundle/rails"]
+	path = plugin/vim/vimfiles/bundle/rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule "plugin/vim/vimfiles/bundle/matchit"]
+	path = plugin/vim/vimfiles/bundle/matchit
+	url = git://github.com/edsono/vim-matchit.git
+[submodule "plugin/vim/vimfiles/bundle/markdown"]
+	path = plugin/vim/vimfiles/bundle/markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule "plugin/vim/vimfiles/bundle/endwise"]
+	path = plugin/vim/vimfiles/bundle/endwise
+	url = git://github.com/tpope/vim-endwise.git
+[submodule "plugin/vim/vimfiles/bundle/commentary"]
+	path = plugin/vim/vimfiles/bundle/commentary
+	url = git://github.com/tpope/vim-commentary.git
+[submodule "plugin/vim/vimfiles/bundle/solarized"]
+	path = plugin/vim/vimfiles/bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
