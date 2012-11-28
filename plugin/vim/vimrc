@@ -1,0 +1,88 @@
+" Pathogen
+call pathogen#infect()
+
+" General
+set nocompatible
+syntax enable
+set encoding=utf-8
+set shell=/bin/sh
+set laststatus=2
+set showcmd
+set ruler
+set number
+set shortmess+=I
+set showmatch
+set title
+set visualbell
+set noerrorbells
+filetype plugin indent on
+
+" History/backups
+set nobackup
+set nowritebackup
+set noswapfile
+set history=1000
+
+" Whitespace
+set wrap
+set linebreak
+set tabstop=2 shiftwidth=2
+set expandtab
+set backspace=indent,eol,start
+set autoindent
+set copyindent
+set smarttab
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Windows
+set winwidth=20
+set winminwidth=20
+set winwidth=84
+set winheight=5
+set winminheight=5
+set winheight=999
+
+" Mappings
+let mapleader=','
+cnoremap %% <c-r>=expand('%:h').'/'<cr>
+nnoremap <tab> <c-^>
+nnoremap ; :
+nnoremap : ;
+nnoremap <leader>w :FixWhitespace<cr>
+vnoremap <leader>s :sort<cr>
+nnoremap <leader>/ :noh<cr><esc>
+nnoremap <leader>e :Explore<cr>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap - ddp
+nnoremap _ ddkP
+nnoremap j gj
+nnoremap k gk
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <silent> ,/ :noh<cr>
+let g:vroom_map_keys=0
+let g:ctrlp_map = '<Space>'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<c-r>'],
+                              \ 'ToggleRegex()':   ['<c-s-r>'] }
+
+" Colors
+set background=dark
+let ruby_operators=1
+colorscheme solarized
+
+" Powerline
+let g:Powerline_symbols='fancy'
+let g:Powerline_colorscheme='solarized16'
