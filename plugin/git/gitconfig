@@ -1,0 +1,16 @@
+[user]
+        name = Alex Kern
+        email = alex@kernul.com
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+[core]
+        excludesfile = ~/.gitignore
+        editor = vim
+[apply]
+        whitespace = nowarn
+[github]
+        user = capnkernul
+[mergetool]
+        keepBackup = false

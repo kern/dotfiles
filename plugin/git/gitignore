@@ -1,0 +1,47 @@
+.DS_Store
+Icon?
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# TextMate
+*.tmproj
+*.tmproject
+tmtags
+
+# Eclipse
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# CDT-specific
+.cproject
+
+# VIM
+.*.sw[a-z]
+*.un~
+Session.vim
+
+# Pow
+.powrc
+
+# Rubinius
+.rbx
+
+# Sass
+.sass-cache
