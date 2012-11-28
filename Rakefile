@@ -18,6 +18,8 @@ class InstallfileLoader
   end
 end
 
+task :default => :install
+
 desc "Execute the Installfile."
 task :install do
   skip_all = false
@@ -54,4 +56,8 @@ task :install do
     end
   end
 end
-task :default => "install"
+
+desc "Execute the OSX installer script."
+task :osx do
+  sh "~/.dotfiles/plugin/osx/install.sh"
+end
