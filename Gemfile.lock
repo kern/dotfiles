@@ -1,0 +1,24 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.2.9)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    chronic (0.8.0)
+    i18n (0.6.1)
+    multi_json (1.3.7)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.6.1)
+    rake (10.0.0)
+    whenever (0.8.0)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  net-sftp
+  rake
+  whenever

@@ -1,0 +1,2 @@
+source_directory $DOTFILESINTERACTIVECONFIG
+source_directory $DOTFILESPLUGIN

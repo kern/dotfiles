@@ -1,0 +1,2 @@
+setopt LOCAL_OPTIONS
+setopt LOCAL_TRAPS
