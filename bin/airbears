@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+require "mechanize"
+
+def verify_airbears
+  unless `airport -I` =~ /SSID: AirBears/
+    puts "You're not connected to AirBears."
+    exit 1
+  end
+end
+
+def logged_in?
+  `ping -c 1 google.com` =~ /1 packets received/
+end
+
+case ARGV[0]
+when "in"
+  verify_airbears
+  if logged_in?
+    puts "It seems like you're already logged in."
+    exit 1
+  end
+
+  config = YAML.load_file(File.expand_path("~/.airbears"))    
+  username = config["username"]
+  password = config["password"]
+
+  a = Mechanize.new
+  a.get("https://wlan.berkeley.edu/cgi-bin/login/cookie.cgi") do |page|
+    page.form_with(method: "POST") do |f|
+      f["username"] = username
+      f["password"] = password
+      f.submit
+    end
+  end
+  
+  puts "Logged in."
+when "out"
+  verify_airbears
+  unless logged_in?
+    puts "It seems like you're already logged out."
+    exit 1
+  end
+
+  a = Mechanize.new
+  a.get("https://wlan.berkeley.edu/cgi-bin/logout/logout.cgi")
+  puts "Logged out."
+else
+  puts "usage: airbears COMMAND"
+  puts
+  puts "Possible commands:"
+  puts "  in   # Logs into AirBears."
+  puts "  out  # Logs out of AirBears."
+  puts
+end
