@@ -37,3 +37,6 @@
 [submodule "plugin/vim/vimfiles/bundle/supertab"]
 	path = plugin/vim/vimfiles/bundle/supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule "plugin/vim/vimfiles/bundle/powerline"]
+	path = plugin/vim/vimfiles/bundle/powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
