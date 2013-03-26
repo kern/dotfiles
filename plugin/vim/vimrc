@@ -5,7 +5,7 @@ call pathogen#infect()
 set nocompatible
 syntax enable
 set encoding=utf-8
-set shell=/bin/sh
+set shell=/usr/local/bin/zsh
 set laststatus=2
 set showcmd
 set ruler
@@ -16,6 +16,10 @@ set title
 set visualbell
 set noerrorbells
 filetype plugin indent on
+
+" Mouse
+set mouse=a
+set ttymouse=xterm2
 
 " History/backups
 set nobackup
@@ -51,6 +55,7 @@ set winheight=999
 
 " Mappings
 let mapleader=','
+let maplocalleader='\\'
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
 nnoremap <tab> <c-^>
 nnoremap ; :
@@ -67,6 +72,8 @@ nnoremap - ddp
 nnoremap _ ddkP
 nnoremap j gj
 nnoremap k gk
+inoremap jk <esc>
+inoremap <esc> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
