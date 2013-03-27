@@ -1,7 +1,13 @@
 # @CapnKernul's dotfiles #
 
-Go crazy.
+My sanctuary.
 
-## Credits ##
+## Installation ##
 
-These are based off of [@holman's dotfiles](https://github.com/holman/dotfiles).
+    $ git clone git://github.com/CapnKernul/dotfiles.git ~/.dotfiles
+    $ cd ~/.dotfiles
+    $ script/install
+
+## License ##
+
+Released under the MIT license.

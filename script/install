@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-for file in $PWD/symlinks/*; do
+for file in $PWD/config/*; do
   basename=$(basename $file)
   target=$HOME/.$basename
 

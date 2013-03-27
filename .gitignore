@@ -1,3 +1,3 @@
-symlinks/vim/.VimballRecord
-symlinks/vim/.netrwhist
-symlinks/vim/bundle/*
+config/vim/.VimballRecord
+config/vim/.netrwhist
+config/vim/bundle/*
