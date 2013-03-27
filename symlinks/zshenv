@@ -1,0 +1,14 @@
+export DOTFILES=$HOME/.dotfiles
+export DOTFILES_BIN=$DOTFILES/bin
+export DOTFILES_ZSH=$DOTFILES/zsh
+export DOTFILES_FUNCTIONS=$DOTFILES_ZSH/functions
+
+fpath=($DOTFILES_FUNCTIONS $fpath)
+autoload -U $DOTFILES_FUNCTIONS/*(:t)
+
+source $DOTFILES_ZSH/options.zsh
+source $DOTFILES_ZSH/history.zsh
+source $DOTFILES_ZSH/path.zsh
+source $DOTFILES_ZSH/aliases.zsh
+source $DOTFILES_ZSH/jumpdir.zsh
+source $DOTFILES_ZSH/editor.zsh

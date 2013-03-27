@@ -1,11 +1,18 @@
-" Pathogen
-call pathogen#infect()
-
 " General
 set nocompatible
 syntax enable
+filetype plugin indent on
 set encoding=utf-8
 set shell=/usr/local/bin/zsh
+
+" Vundle
+set runtimepath+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
+
+" Visual
 set laststatus=2
 set showcmd
 set ruler
@@ -15,7 +22,6 @@ set showmatch
 set title
 set visualbell
 set noerrorbells
-filetype plugin indent on
 
 " Mouse
 set mouse=a
@@ -78,18 +84,14 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
-nnoremap <silent> ,/ :noh<cr>
-let g:vroom_map_keys=0
-let g:ctrlp_map = '<Space>'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<c-r>'],
-                              \ 'ToggleRegex()':   ['<c-s-r>'] }
 
 " Colors
 set background=dark
 let ruby_operators=1
 colorscheme solarized
 
-" Powerline
-let g:Powerline_symbols='fancy'
-let g:Powerline_colorscheme='solarized16'
+" ctrlp
+let g:ctrlp_map = '<Space>'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<c-r>'],
+                              \ 'ToggleRegex()':   ['<c-s-r>'] }

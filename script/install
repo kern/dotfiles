@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+for file in $PWD/symlinks/*; do
+  basename=$(basename $file)
+  target=$HOME/.$basename
+
+  if [[ $(readlink $target) != $file ]]; then
+    if [[ -e $target ]]; then
+      answer=
+      read -p "Replace $target? (n) " answer
+      if [[ $answer != "y" ]]; then continue; fi
+    fi
+
+    echo $target "->" $file
+    ln -s -F $file $target
+  fi
+done
