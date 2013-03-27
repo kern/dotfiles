@@ -22,19 +22,19 @@ when "in"
     exit 1
   end
 
-  config = YAML.load_file(File.expand_path("~/.airbears"))    
+  config = YAML.load_file(File.expand_path("~/.airbears"))
   username = config["username"]
   password = config["password"]
 
   a = Mechanize.new
   a.get("https://wlan.berkeley.edu/cgi-bin/login/cookie.cgi") do |page|
-    page.form_with(method: "POST") do |f|
+    page.form_with(:method => "POST") do |f|
       f["username"] = username
       f["password"] = password
       f.submit
     end
   end
-  
+
   puts "Logged in."
 when "out"
   verify_airbears
