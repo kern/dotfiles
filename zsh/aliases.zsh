@@ -1,3 +1,7 @@
+# Vim
+alias v="vim"
+
+# Git
 alias g="git"
 alias ga="git all"
 alias gl="git pull"
