@@ -1,3 +1,0 @@
-source $DOTFILES_ZSH/interactive/clicolor.zsh
-source $DOTFILES_ZSH/interactive/prompt.zsh
-source $DOTFILES_ZSH/interactive/completion.zsh
