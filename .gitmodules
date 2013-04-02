@@ -1,3 +1,9 @@
 [submodule "config/vim/bundle/vundle"]
 	path = config/vim/bundle/vundle
 	url = git://github.com/gmarik/vundle.git
+[submodule "config/vim/bundle/ctrlp.vim"]
+	path = config/vim/bundle/ctrlp.vim
+	url = http://github.com/kien/ctrlp.vim.git
+[submodule "config/vim/bundle/vim-colors-solarized"]
+	path = config/vim/bundle/vim-colors-solarized
+	url = http://github.com/altercation/vim-colors-solarized.git
