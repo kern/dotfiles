@@ -9,19 +9,19 @@ config = YAML.load_file(File.expand_path("~/.seedsync"))
 host = config["host"]
 username = config["username"]
 password = config["password"]
-undownloaded_remote_path = config["undownloaded_remote_path"]
+remote_path = config["remote_path"]
 local_path = File.expand_path(config["local_path"])
 
 FileUtils.mkdir_p(local_path)
 
 Net::SFTP.start(host, username, :password => password) do |sftp|
-  sftp.dir.foreach(undownloaded_remote_path) do |entry|
+  sftp.dir.foreach(remote_path) do |entry|
     next if [".", ".."].include?(entry.name)
 
-    undownloaded_remote = File.join(undownloaded_remote_path, entry.name)
+    remote = File.join(remote_path, entry.name)
     local = File.join(local_path, entry.name)
     options = (entry.directory? ? { :recursive => true } : {})
-    sftp.download!(undownloaded_remote, local, options)
-    sftp.remove!(undownloaded_remote)
+    sftp.download!(remote, local, options)
+    sftp.remove!(remote)
   end
 end
