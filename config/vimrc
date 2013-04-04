@@ -11,6 +11,7 @@ call vundle#rc()
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
+Bundle 'slim-template/vim-slim'
 
 " Visual
 set laststatus=2

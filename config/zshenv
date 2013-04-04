@@ -12,3 +12,4 @@ source $DOTFILES_LIB/path.zsh
 source $DOTFILES_LIB/aliases.zsh
 source $DOTFILES_LIB/jumpdir.zsh
 source $DOTFILES_LIB/editor.zsh
+source $DOTFILES_LIB/rvm.zsh
