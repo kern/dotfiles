@@ -18,10 +18,11 @@ Net::SFTP.start(host, username, :password => password) do |sftp|
   sftp.dir.foreach(remote_path) do |entry|
     next if [".", ".."].include?(entry.name)
 
-    remote = File.join(remote_path, entry.name)
+    remote_link = File.join(remote_path, entry.name)
+    remote = sftp.readlink!(remote_link).name
     local = File.join(local_path, entry.name)
-    options = (entry.directory? ? { :recursive => true } : {})
+    options = (sftp.file.directory?(remote) ? { :recursive => true } : {})
     sftp.download!(remote, local, options)
-    sftp.remove!(remote)
+    sftp.remove!(remote_link)
   end
 end
