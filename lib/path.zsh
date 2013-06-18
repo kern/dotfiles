@@ -8,4 +8,3 @@ function prepend_to_path() {
 
 prepend_to_path $DOTFILES_BIN
 prepend_to_path /usr/local/share/python
-append_to_path $HOME/.rvm/bin
