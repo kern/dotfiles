@@ -1,28 +1,14 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env zsh
 
-require "yaml"
-require "fileutils"
-require "net/sftp"
+HOST="admin@kernstream.zapto.org"
+SOURCE="/home/admin/undownloaded/"
+TARGET="$HOME/Downloads/Seedbox"
 
-config = YAML.load_file(File.expand_path("~/.seedsync"))
+# Create the target directory.
+mkdir -p $TARGET
 
-host = config["host"]
-username = config["username"]
-password = config["password"]
-remote_path = config["remote_path"]
-local_path = File.expand_path(config["local_path"])
+# Sync and remove all hardlinks.
+rsync -rzP --exclude=".keep" --remove-source-files $HOST:$SOURCE $TARGET
 
-FileUtils.mkdir_p(local_path)
-
-Net::SFTP.start(host, username, :password => password) do |sftp|
-  sftp.dir.foreach(remote_path) do |entry|
-    next if [".", ".."].include?(entry.name)
-
-    remote_link = File.join(remote_path, entry.name)
-    remote = sftp.readlink!(remote_link).name
-    local = File.join(local_path, entry.name)
-    options = (sftp.file.directory?(remote) ? { :recursive => true } : {})
-    sftp.download!(remote, local, options)
-    sftp.remove!(remote_link)
-  end
-end
+# Remove empty directories.
+ssh $HOST "find $SOURCE -type d -empty -prune -exec rmdir --ignore-fail-on-non-empty -p \{\} \;"
