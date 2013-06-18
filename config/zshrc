@@ -1,3 +1,4 @@
 source $DOTFILES_LIB/interactive/clicolor.zsh
 source $DOTFILES_LIB/interactive/prompt.zsh
 source $DOTFILES_LIB/interactive/completion.zsh
+source $DOTFILES_LIB/interactive/bindings.zsh
