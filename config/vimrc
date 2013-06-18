@@ -8,10 +8,14 @@ set shell=/usr/local/bin/zsh
 " Vundle
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'gmarik/vundle'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
 Bundle 'slim-template/vim-slim'
+Bundle 'tpope/vim-fireplace'
+Bundle 'uarun/vim-protobuf'
+Bundle 'vim-scripts/paredit.vim'
 
 " Visual
 set laststatus=2
