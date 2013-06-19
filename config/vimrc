@@ -12,7 +12,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'slim-template/vim-slim'
-Bundle 'vim-scripts/VimClojure'
+Bundle 'guns/vim-clojure-static'
+Bundle 'vim-scripts/paredit.vim'
 
 " Visual
 set laststatus=2
