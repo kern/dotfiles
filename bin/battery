@@ -1,0 +1,1 @@
+pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/'
