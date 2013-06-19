@@ -9,10 +9,13 @@ set shell=/usr/local/bin/zsh
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
+Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
 Bundle 'slim-template/vim-slim'
-Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'uarun/vim-protobuf'
 Bundle 'vim-scripts/paredit.vim'
 
 " Visual
@@ -73,10 +76,6 @@ nnoremap <leader>w :FixWhitespace<cr>
 vnoremap <leader>s :sort<cr>
 nnoremap <leader>/ :noh<cr><esc>
 nnoremap <leader>e :Explore<cr>
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
 nnoremap - ddp
 nnoremap _ ddkP
 nnoremap j gj
@@ -87,6 +86,13 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
+
+" tmux
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
 " Colors
 set background=dark

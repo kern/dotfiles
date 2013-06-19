@@ -1,0 +1,1 @@
+setlocal lispwords+=fact,facts
