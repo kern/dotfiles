@@ -1,6 +1,6 @@
-# @CapnKernul's dotfiles #
+# @kernvision's dotfiles #
 
-    $ git clone git://github.com/CapnKernul/dotfiles.git ~/.dotfiles
+    $ git clone git://github.com/kernvision/dotfiles.git ~/.dotfiles
     $ cd ~/.dotfiles
     $ script/install
 
