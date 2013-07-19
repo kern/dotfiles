@@ -1,1 +1,1 @@
-setlocal lispwords+=fact,facts
+setlocal lispwords+=fact,facts,future-fact,future-facts
