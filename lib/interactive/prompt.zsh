@@ -1,7 +1,7 @@
 autoload colors && colors
 
 prompt_directory_name() {
-  echo "%{$fg_bold[blue]%}%1/%\/%{$reset_color%}"
+  echo "%1/%\/"
 }
 
-export PROMPT=$'$(prompt_directory_name) $ '
+export PROMPT=$'$(prompt_directory_name) %{$fg[cyan]%}$%{$reset_color%} '
