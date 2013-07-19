@@ -1,6 +1,6 @@
-# @kernvision's dotfiles #
+# @axskern's dotfiles #
 
-    $ git clone git://github.com/kernvision/dotfiles.git ~/.dotfiles
+    $ git clone git://github.com/axskern/dotfiles.git ~/.dotfiles
     $ cd ~/.dotfiles
     $ script/install
 
