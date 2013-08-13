@@ -1,6 +1,7 @@
 # General
 set PATH $HOME/.dotfiles/bin $PATH
 set EDITOR vim
+set fish_greeting ""
 
 # Colors
 set fish_color_normal normal
@@ -18,6 +19,8 @@ set fish_color_escape green
 set fish_color_cwd normal
 
 # rbenv
-set PATH $HOME/.rbenv/bin $PATH
-set PATH $HOME/.rbenv/shims $PATH
-rbenv rehash >/dev/null ^&1
+if which rbenv
+	set PATH $HOME/.rbenv/bin $PATH
+	set PATH $HOME/.rbenv/shims $PATH
+	rbenv rehash >/dev/null ^&1
+end
