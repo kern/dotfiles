@@ -11,7 +11,7 @@
 [apply]
         whitespace = nowarn
 [github]
-        user = capnkernul
+        user = axskern
 [mergetool]
         keepBackup = false
 [push]

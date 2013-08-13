@@ -1,2 +1,0 @@
-#compdef j
-_files -W $JUMPDIR -/

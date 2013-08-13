@@ -1,17 +1,20 @@
-#!/bin/zsh
+#!/usr/local/bin/fish
 
-for file in $PWD/config/*; do
-  basename=$(basename $file)
-  target=$HOME/.$basename
+for dest in $PWD/lib/*
+  set basename (basename $dest)
+  set src $HOME/.$basename
 
-  if [[ $(readlink $target) != $file ]]; then
-    if [[ -e $target ]]; then
-      answer=
-      read -p "Replace $target? (n) " answer
-      if [[ $answer != "y" ]]; then continue; fi
-    fi
+  if begin; test ! -h $src; or test $dest != (readlink $src); end
+    if test -e $src
+      read -p "echo \"Replace $src? (n) \"" answer
 
-    echo $target "->" $file
-    ln -s -F $file $target
-  fi
-done
+      if test $answer != "y"
+        continue
+      end
+    end
+
+    echo "$src -> $dest"
+    rm -rf $src
+    ln -s $dest $src
+  end
+end

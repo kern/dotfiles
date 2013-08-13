@@ -1,4 +1,7 @@
 bin/seedsync
-config/vim/.VimballRecord
-config/vim/.netrwhist
-config/vim/bundle
+lib/vim/.VimballRecord
+lib/vim/.netrwhist
+lib/vim/bundle
+lib/config/fish/fish_history
+lib/config/fish/fish_read_history
+lib/config/fish/fishd.*
