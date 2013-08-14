@@ -19,7 +19,7 @@ set fish_color_escape green
 set fish_color_cwd normal
 
 # rbenv
-if which rbenv
+if which rbenv > /dev/null
 	set PATH $HOME/.rbenv/bin $PATH
 	set PATH $HOME/.rbenv/shims $PATH
 	rbenv rehash >/dev/null ^&1
