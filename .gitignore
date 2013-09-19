@@ -5,3 +5,4 @@ lib/vim/bundle
 lib/config/fish/fish_history
 lib/config/fish/fish_read_history
 lib/config/fish/fishd.*
+lib/irssi/config
