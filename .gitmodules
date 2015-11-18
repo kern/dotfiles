@@ -1,3 +1,6 @@
 [submodule "config/vim/bundle/vundle"]
 	path = config/vim/bundle/vundle
 	url = git://github.com/gmarik/vundle.git
+[submodule "lib/vim/bundle/colorschemes"]
+	path = lib/vim/bundle/colorschemes
+	url = git@github.com:flazz/vim-colorschemes.git

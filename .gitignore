@@ -1,8 +1,6 @@
-bin/seedsync
-lib/vim/.VimballRecord
-lib/vim/.netrwhist
-lib/vim/bundle
+lib/config/nvim/.vim
+lib/config/nvim/.netrwhist
+lib/config/nvim/bundle
 lib/config/fish/fish_history
 lib/config/fish/fish_read_history
 lib/config/fish/fishd.*
-lib/irssi/config

@@ -36,6 +36,7 @@ local.properties
 .*.sw[a-z]
 *.un~
 Session.vim
+.vimrc
 
 # Pow
 .powrc

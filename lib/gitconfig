@@ -1,6 +1,6 @@
 [user]
         name = Alex Kern
-        email = alex@kernul.com
+        email = alex@kern.io
 [color]
         diff = auto
         status = auto
@@ -11,7 +11,7 @@
 [apply]
         whitespace = nowarn
 [github]
-        user = axskern
+        user = kern
 [mergetool]
         keepBackup = false
 [push]
