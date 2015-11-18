@@ -6,7 +6,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'w0ng/vim-hybrid'
-Plug 'zephod/vim-iterm2-navigator'
 
 call plug#end()
 
@@ -71,7 +70,7 @@ vnoremap <leader>s :sort<cr>
 
 " CtrlP
 let g:ctrlp_map = '<Space>'
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|.git'
 
 " Identation
 set autoindent
@@ -82,3 +81,11 @@ set shiftwidth=2
 set smarttab
 set softtabstop=2
 set tabstop=2
+
+" tmux
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <bs> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
