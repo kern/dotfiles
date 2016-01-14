@@ -1,11 +1,19 @@
 call plug#begin('~/.config/nvim/bundle')
 
+Plug 'bling/vim-airline'
+Plug 'cespare/vim-toml'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'derekwyatt/vim-scala'
 Plug 'jiangmiao/auto-pairs'
+Plug 'kergoth/vim-hilinks'
+Plug 'kern/vim-es7'
 Plug 'kien/ctrlp.vim'
-Plug 'sheerun/vim-polyglot'
+Plug 'mxw/vim-jsx'
+Plug 'othree/html5.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'w0ng/vim-hybrid'
+Plug 'wavded/vim-stylus'
 
 call plug#end()
 
@@ -89,3 +97,9 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+
+" vim-airline
+let g:airline_powerline_fonts = 1
+
+" jsx
+let g:jsx_ext_required = 0

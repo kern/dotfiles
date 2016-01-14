@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-/usr/local/bin/tmux -L default prev
+/usr/local/bin/tmux -L default next
