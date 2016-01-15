@@ -1,7 +1,6 @@
-lib/config/configstore
-lib/config/nvim/.vim
-lib/config/nvim/.netrwhist
-lib/config/nvim/bundle
-lib/config/fish/fish_history
-lib/config/fish/fish_read_history
-lib/config/fish/fishd.*
+nvim/.vim
+nvim/.netrwhist
+nvim/bundle
+fish/fish_history
+fish/fish_read_history
+fish/fishd.*

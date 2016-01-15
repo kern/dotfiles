@@ -1,6 +1,6 @@
-#!/usr/local/bin/fish
+#! /usr/bin/env bash
 
-for dest in $PWD/lib/*
+for dest in $PWD/*
   set basename (basename $dest)
   set src $HOME/.$basename
 

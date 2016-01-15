@@ -1,0 +1,24 @@
+[user]
+name = Alex Kern
+email = alex@kern.io
+
+[color]
+diff = auto
+status = auto
+branch = auto
+
+[core]
+excludesfile = ~/.gitignore
+editor = vim
+
+[apply]
+whitespace = nowarn
+
+[github]
+user = kern
+
+[mergetool]
+keepBackup = false
+
+[push]
+default = matching
