@@ -1,3 +1,3 @@
 function j
-	cd ~/Projects/$argv
+	cd $PAVLOV_HOME/$argv
 end

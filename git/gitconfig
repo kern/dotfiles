@@ -22,3 +22,5 @@ keepBackup = false
 
 [push]
 default = matching
+[credential]
+	helper = osxkeychain
