@@ -78,9 +78,11 @@ filetype plugin indent on
 syntax enable
 set background=dark
 set cursorline
-set t_Co=256
 let base16colorspace=256
 colorscheme base16-tomorrow
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
 autocmd VimEnter * AirlineTheme base16
 
 " indent guides
