@@ -27,6 +27,7 @@ alias gcob='git checkout -b'
 alias gco='git checkout'
 alias gc='git commit -av'
 alias gb='git branch'
+alias gp='git push'
 
 # jump
 j() {
