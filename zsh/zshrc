@@ -1,6 +1,6 @@
 # env
 export HOMEBREW="/usr/local"
-export EDITOR=neovim
+export EDITOR=nvim
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PAVLOV_HOME=$HOME/Pavlov
 export CXXFLAGS="-I$HOMEBREW/include"
@@ -13,7 +13,23 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # prompt
 source $HOME/.dotfiles/zsh/zsh-git-prompt.sh
-export PROMPT='%B%c%b$(git_super_status) %F{magenta}%#%F{reset} '
+export PROMPT='%B%~%b$(git_super_status) %F{magenta}%#%F{reset} '
+
+# aliases
+alias vim=nvim
+alias v=nvim
+alias gs='git status -sb'
+alias gcob='git checkout -b'
+alias gco='git checkout'
+alias gc='git commit -av'
+alias gb='git branch'
+
+# jump
+j() {
+  cd $PAVLOV_HOME/"${1:-}"
+}
+compctl -/ -W $PAVLOV_HOME j
