@@ -1,4 +1,4 @@
-#!/usr/local/bin/fish
+#! /usr/bin/env bash
 
 # General UI/UX
 # -------------
@@ -99,7 +99,7 @@ defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 # Kill affected applications
 # --------------------------
 
-for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer Twitter
-	killall $app
-end
+for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer Twitter; do
+	killall "${app}" &> /dev/null
+done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
