@@ -174,6 +174,9 @@ nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") .
   \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
   \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" Leader-O to open the current directory in a Finder window
+nnoremap <leader>o :exe "!open ".expand('%:h').'/'<cr><cr>
+
 " postgres
 let g:sql_type_default = 'pgsql'
 
