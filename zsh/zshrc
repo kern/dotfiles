@@ -5,7 +5,7 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 export PAVLOV_HOME=$HOME/Pavlov
 export CXXFLAGS="-I$HOMEBREW/include"
 export LDFLAGS="-L$HOMEBREW/lib"
-export PAGER=vimpager
+# export PAGER=vimpager
 
 # base16
 BASE16_SHELL=$HOME/.config/base16-shell/
@@ -28,6 +28,10 @@ alias gco='git checkout'
 alias gc='git commit -av'
 alias gb='git branch'
 alias gp='git push'
+
+# go
+export GOPATH="/usr/local/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # jump
 j() {

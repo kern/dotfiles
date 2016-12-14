@@ -6,6 +6,7 @@ call plug#begin('~/.config/nvim/bundle')
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-gitgutter'
 Plug 'b4winckler/vim-angry'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
@@ -29,12 +30,15 @@ Plug 'pangloss/vim-javascript'
 Plug 'rking/ag.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'uarun/vim-protobuf'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 Plug 'wavded/vim-stylus'
+
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -83,7 +87,7 @@ colorscheme base16-tomorrow
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
-autocmd VimEnter * AirlineTheme base16
+" autocmd VimEnter * AirlineTheme base16
 
 " indent guides
 autocmd VimEnter * IndentGuidesEnable
@@ -138,7 +142,7 @@ if executable('ag')
 endif
 
 " NERDTree
-nnoremap <C-Space> :NERDTreeToggle<CR>
+nnoremap <Leader><Leader> :NERDTreeToggle<CR>
 " autocmd vimenter * NERDTree
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
