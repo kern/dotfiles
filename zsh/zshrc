@@ -38,3 +38,21 @@ j() {
   cd $PAVLOV_HOME/"${1:-}"
 }
 compctl -/ -W $PAVLOV_HOME j
+
+# history
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
+# command + left/right
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
+
+# option + left/right
+bindkey "^[^[[C" forward-word
+bindkey "^[^[[D" backward-word
+
+# option + delete
+bindkey "^[d" backward-kill-word
