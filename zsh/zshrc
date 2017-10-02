@@ -3,8 +3,12 @@ export HOMEBREW="/usr/local"
 export EDITOR=nvim
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PAVLOV_HOME=$HOME/Pavlov
+export PAVLOV_MONO=$HOME/Pavlov/mono
 export CXXFLAGS="-I$HOMEBREW/include"
 export LDFLAGS="-L$HOMEBREW/lib"
+export CUDA_HOME=/usr/local/cuda
+export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME:$CUDA_HOME/extras/CUPTI/lib"
+export LD_LIBRARY_PATH="$DYLD_LIBRARY_PATH"
 # export PAGER=vimpager
 
 # base16
@@ -28,10 +32,21 @@ alias gco='git checkout'
 alias gc='git commit -av'
 alias gb='git branch'
 alias gp='git push'
+alias l='exa'
+
+# complete
+autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
+
+# kubectl
+source <(kubectl completion zsh)
 
 # go
 export GOPATH="/usr/local/go"
 export PATH="$GOPATH/bin:$PATH"
+
+# rustup
+source $HOME/.cargo/env
 
 # jump
 j() {
@@ -56,3 +71,17 @@ bindkey "^[^[[D" backward-word
 
 # option + delete
 bindkey "^[d" backward-kill-word
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+
+# fzf & ripgrep
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+
+# ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH

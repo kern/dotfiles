@@ -4,36 +4,43 @@ endfunction
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/echodoc.vim'
 Plug 'b4winckler/vim-angry'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
 Plug 'ervandew/supertab'
 Plug 'exu/pgsql.vim'
-Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-indent'
+Plug 'roxma/ncm-flow'
 Plug 'kana/vim-textobj-user'
 Plug 'kergoth/vim-hilinks'
-Plug 'kien/ctrlp.vim'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neomake/neomake'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'rking/ag.vim'
+Plug 'roxma/nvim-completion-manager'
 Plug 'rust-lang/rust.vim'
+Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
+" Plug 'suan/vim-instant-markdown'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'uarun/vim-protobuf'
+" Plug 'unblevable/quick-scope'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 Plug 'wavded/vim-stylus'
@@ -48,6 +55,7 @@ set mouse=a
 set noshowmode
 set nobackup
 set nowritebackup
+set hidden
 set noswapfile
 set exrc
 set secure
@@ -89,7 +97,11 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 " autocmd VimEnter * AirlineTheme base16
 
-" indent guides
+" folding and indent
+set foldenable
+set foldmethod=indent
+set foldnestmax=2
+set foldminlines=3
 autocmd VimEnter * IndentGuidesEnable
 hi IndentGuidesOdd ctermbg=18
 hi IndentGuidesEven ctermbg=19
@@ -119,27 +131,40 @@ nnoremap <right> <nop>
 " %% to write the current directory in commands.
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
 
+" Leader-Leader to flip to the previous buffer.
+nnoremap <leader><leader> <c-^>
+
+" Leader-R to rename the current file.
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+nnoremap <leader>r :call RenameFile()<cr>
+
+" Leader-F to clean the current file of fancy characters.
+function! RemoveFancyCharacters()
+  let typo = {}
+  let typo["“"] = '"'
+  let typo["”"] = '"'
+  let typo["‘"] = "'"
+  let typo["’"] = "'"
+  let typo["–"] = '--'
+  let typo["—"] = '---'
+  let typo["…"] = '...'
+  :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
+endfunction
+nnoremap <leader>f :call RemoveFancyCharacters()<cr>
+
 " Leader-S to sort the selected lines.
 vnoremap <leader>s :sort<cr>
 
-" K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
-
-" CtrlP
-let g:ctrlp_map = '<Space>'
-
-" The Silver Searcher (ag) 
-" Thanks ThoughtBot: https://robots.thoughtbot.com/faster-grepping-in-vim
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor 
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+" fzf
+nnoremap <Space> :Files<CR>
 
 " NERDTree
 nnoremap <Leader><Leader> :NERDTreeToggle<CR>
@@ -150,7 +175,7 @@ nnoremap <Leader><Leader> :NERDTreeToggle<CR>
 
 " tmux
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <bs> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
@@ -161,6 +186,8 @@ let g:airline_powerline_fonts = 1
 
 " jsx
 let g:jsx_ext_required = 0
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 
 " Highlight the current line number.
 function! <SID>SetCursorLine()
@@ -184,8 +211,49 @@ nnoremap <leader>o :exe "!open ".expand('%:h').'/'<cr><cr>
 " postgres
 let g:sql_type_default = 'pgsql'
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-inoremap <expr> <C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr> <BS> deoplete#smart_close_popup()."\<C-h>"
+" LanguageClient-neovim
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsList = "quickfix"
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': [system('PATH=$(npm bin):$PATH && which flow-language-server | tr -d "\n"'), '--stdio'],
+    \ 'javascript.jsx': [system('PATH=$(npm bin):$PATH && which flow-language-server | tr -d "\n"'), '--stdio'],
+    \ }
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+" Quickfix and Locations
+function! OpenQuickfix()
+  if !empty(getqflist())
+    copen 2
+  endif
+endfunction
+function! OpenLocations()
+  if !empty(getloclist(0))
+    copen 2
+  endif
+endfunction
+nnoremap <Leader>c :call OpenQuickfix()<CR>
+nnoremap <Leader>l :call OpenLocations()<CR>
+
+" Neoformat
+autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.go Neoformat
+autocmd BufWritePre *.py Neoformat
+
+" Neomake
+ autocmd! BufWritePost * Neomake
+let g:neomake_open_list = 2
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" load .vimlocal
+silent! so .vimlocal
+
+" ripgrep
+set grepprg=rg\ --vimgrep
