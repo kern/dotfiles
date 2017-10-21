@@ -5,14 +5,14 @@ endfunction
 call plug#begin('~/.config/nvim/bundle')
 
 " Plug 'SirVer/ultisnips'
+" Plug 'unblevable/quick-scope'
 Plug 'airblade/vim-gitgutter'
+Plug 'alampros/vim-styled-jsx'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/echodoc.vim'
 Plug 'b4winckler/vim-angry'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
@@ -20,29 +20,35 @@ Plug 'ervandew/supertab'
 Plug 'exu/pgsql.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jparise/vim-graphql'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-indent'
-Plug 'roxma/ncm-flow'
 Plug 'kana/vim-textobj-user'
 Plug 'kergoth/vim-hilinks'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neomake/neomake'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'roxma/ncm-flow'
 Plug 'roxma/nvim-completion-manager'
 Plug 'rust-lang/rust.vim'
-Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
-" Plug 'suan/vim-instant-markdown'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'uarun/vim-protobuf'
-" Plug 'unblevable/quick-scope'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
+Plug 'w0rp/ale'
 Plug 'wavded/vim-stylus'
 
 Plug 'ryanoasis/vim-devicons'
@@ -165,6 +171,16 @@ vnoremap <leader>s :sort<cr>
 
 " fzf
 nnoremap <Space> :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>t :Tags<CR>
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+nnoremap <Leader>f :Rg 
+nnoremap <Leader>k :Rg "\b<cword>\b" <CR>
 
 " NERDTree
 nnoremap <Leader><Leader> :NERDTreeToggle<CR>
@@ -180,6 +196,7 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+nnoremap <Leader>j :!tmux send-keys -t 0:0.1 C-p C-j <CR><CR>
 
 " vim-airline
 let g:airline_powerline_fonts = 1
@@ -237,17 +254,14 @@ endfunction
 nnoremap <Leader>c :call OpenQuickfix()<CR>
 nnoremap <Leader>l :call OpenLocations()<CR>
 
-" Neoformat
-autocmd BufWritePre *.js Neoformat
-autocmd BufWritePre *.go Neoformat
-autocmd BufWritePre *.py Neoformat
-
-" Neomake
- autocmd! BufWritePost * Neomake
-let g:neomake_open_list = 2
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+" ALE
+let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_fixers = {
+    \ 'javascript': ['eslint'],
+    \ }
+nnoremap <Leader>e :ALENextWrap <CR>
+nnoremap <Leader>w :ALEPreviousWrap <CR>
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -257,3 +271,6 @@ silent! so .vimlocal
 
 " ripgrep
 set grepprg=rg\ --vimgrep
+
+" Goyo
+nnoremap <Leader>g :Goyo <CR>

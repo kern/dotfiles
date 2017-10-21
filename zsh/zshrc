@@ -85,3 +85,6 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.
 
 # ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
+
+# Pavlov mono ;)
+if [[ -d ~/Pavlov/mono/bin ]]; then export PATH=~/Pavlov/mono/bin:$PATH; fi
