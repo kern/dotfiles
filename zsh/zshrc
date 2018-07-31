@@ -7,6 +7,7 @@ export LDFLAGS="-L$HOMEBREW/lib"
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME:$CUDA_HOME/extras/CUPTI/lib"
 export LD_LIBRARY_PATH="$DYLD_LIBRARY_PATH"
+export JUMPDIR=~/Projects
 # export PAGER=vimpager
 
 # base16
@@ -36,21 +37,11 @@ alias l='exa'
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
 
-# kubectl
-source <(kubectl completion zsh)
-
-# go
-export GOPATH="/usr/local/go"
-export PATH="$GOPATH/bin:$PATH"
-
-# rustup
-source $HOME/.cargo/env
-
 # jump
 j() {
-  cd ~/Cleargraph/"${1:-}"
+  cd "$JUMPDIR/${1:-}"
 }
-compctl -/ -W ~/Cleargraph j
+compctl -/ -W "$JUMPDIR" j
 
 # find and replace in directory
 replace-in-dir() {
@@ -75,8 +66,6 @@ bindkey "^[^[[D" backward-word
 # option + delete
 bindkey "^[d" backward-kill-word
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -85,11 +74,20 @@ if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/lo
 
 # fzf & ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
-# Cleargraph Mono ;)
-if [[ -d ~/Cleargraph/mono/bin ]]; then export PATH=~/Cleargraph/mono/bin:$PATH; fi
-
+# yarn
 export PATH="$HOME/.yarn/bin:$PATH"
+
+# kubectl
+source <(kubectl completion zsh)
+
+# go
+export GOPATH="/usr/local/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# rustup
+if [ -f "$HOME/.cargo/env" ]; then source $HOME/.cargo/env; fi
