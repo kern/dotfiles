@@ -2,8 +2,6 @@
 export HOMEBREW="/usr/local"
 export EDITOR=nvim
 export PATH=$HOME/.dotfiles/bin:$PATH
-export PAVLOV_HOME=$HOME/Pavlov
-export PAVLOV_MONO=$HOME/Pavlov/mono
 export CXXFLAGS="-I$HOMEBREW/include"
 export LDFLAGS="-L$HOMEBREW/lib"
 export CUDA_HOME=/usr/local/cuda
@@ -50,9 +48,14 @@ source $HOME/.cargo/env
 
 # jump
 j() {
-  cd $PAVLOV_HOME/"${1:-}"
+  cd ~/Cleargraph/"${1:-}"
 }
-compctl -/ -W $PAVLOV_HOME j
+compctl -/ -W ~/Cleargraph j
+
+# find and replace in directory
+replace-in-dir() {
+  ag -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
+}
 
 # history
 autoload -U history-search-end
@@ -86,5 +89,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.
 # ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
-# Pavlov mono ;)
-if [[ -d ~/Pavlov/mono/bin ]]; then export PATH=~/Pavlov/mono/bin:$PATH; fi
+# Cleargraph Mono ;)
+if [[ -d ~/Cleargraph/mono/bin ]]; then export PATH=~/Cleargraph/mono/bin:$PATH; fi
+
+export PATH="$HOME/.yarn/bin:$PATH"

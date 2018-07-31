@@ -6,10 +6,10 @@ call plug#begin('~/.config/nvim/bundle')
 
 " Plug 'SirVer/ultisnips'
 " Plug 'unblevable/quick-scope'
+Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'alampros/vim-styled-jsx'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/echodoc.vim'
 Plug 'b4winckler/vim-angry'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
@@ -28,6 +28,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'kergoth/vim-hilinks'
+Plug 'leafgarland/typescript-vim'
+Plug 'lervag/vimtex'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'othree/html5.vim'
@@ -38,6 +40,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tomlion/vim-solidity'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -259,6 +262,8 @@ let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
     \ 'javascript': ['eslint'],
+    \ 'typescript': ['tslint'],
+    \ 'graphql': ['prettier'],
     \ }
 nnoremap <Leader>e :ALENextWrap <CR>
 nnoremap <Leader>w :ALEPreviousWrap <CR>
