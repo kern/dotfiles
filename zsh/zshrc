@@ -15,8 +15,13 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ `uname` = "Linux" ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ `uname` = "Darwin" ]]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # prompt
 source $HOME/.dotfiles/zsh/zsh-git-prompt.sh
@@ -48,23 +53,25 @@ replace-in-dir() {
   ag -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
 }
 
-# history
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
+if [[ `uname` = "Darwin" ]]; then
+  # history
+  autoload -U history-search-end
+  zle -N history-beginning-search-backward-end history-search-end
+  zle -N history-beginning-search-forward-end history-search-end
+  bindkey "^[[A" history-beginning-search-backward-end
+  bindkey "^[[B" history-beginning-search-forward-end
 
-# command + left/right
-bindkey "^[a" beginning-of-line
-bindkey "^[e" end-of-line
+  # command + left/right
+  bindkey "^[a" beginning-of-line
+  bindkey "^[e" end-of-line
 
-# option + left/right
-bindkey "^[^[[C" forward-word
-bindkey "^[^[[D" backward-word
+  # option + left/right
+  bindkey "^[^[[C" forward-word
+  bindkey "^[^[[D" backward-word
 
-# option + delete
-bindkey "^[d" backward-kill-word
+  # option + delete
+  bindkey "^[d" backward-kill-word
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
@@ -73,8 +80,10 @@ if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/go
 if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
 
 # fzf & ripgrep
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if which rg > /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 
 # ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
@@ -83,7 +92,9 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
 
 # kubectl
-source <(kubectl completion zsh)
+if which kubectl > /dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 # go
 export GOPATH="/usr/local/go"

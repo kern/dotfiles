@@ -24,7 +24,7 @@ keepBackup = false
 default = matching
 
 [credential]
-helper = osxkeychain
+helper = cache
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
