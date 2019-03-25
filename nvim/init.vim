@@ -32,10 +32,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'lervag/vimtex'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ncm2/ncm2'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'roxma/ncm-flow'
-Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-yarp'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -279,3 +280,7 @@ set grepprg=rg\ --vimgrep
 
 " Goyo
 nnoremap <Leader>g :Goyo <CR>
+
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect

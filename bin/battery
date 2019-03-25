@@ -1,1 +1,6 @@
-pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/'
+#!/bin/bash
+if [[ `uname` = "Darwin" ]]; then
+  pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/'
+elif [[ `uname` = "Linux" ]]; then
+  upower -i $(upower -e | grep BAT) | grep --color=never -E "percentage" | perl -pe 's/.*?(\d+)%.*/\1/'
+fi
