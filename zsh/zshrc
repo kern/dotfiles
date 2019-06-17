@@ -66,18 +66,12 @@ bindkey "^[^[[D" backward-word
 # option + delete
 bindkey "^[d" backward-kill-word
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
-
 # fzf & ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ruby
-export PATH=/usr/local/opt/ruby/bin:$PATH
+if `which rbenv > /dev/null`; then eval "$(rbenv init -)"; fi
 
 # yarn
 export PATH="$HOME/.yarn/bin:$PATH"
@@ -86,8 +80,24 @@ export PATH="$HOME/.yarn/bin:$PATH"
 source <(kubectl completion zsh)
 
 # go
-export GOPATH="/usr/local/go"
-export PATH="$GOPATH/bin:$PATH"
+export GOPATH="$HOME/Projects/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+export GO111MODULE=on
 
 # rustup
 if [ -f "$HOME/.cargo/env" ]; then source $HOME/.cargo/env; fi
+
+# nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/alexkern/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alexkern/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/alexkern/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alexkern/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Run local zshrc
+if [[ -f "$HOME/.zshrc.local" ]]; then . "$HOME/.zshrc.local"; fi

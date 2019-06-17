@@ -1,0 +1,2 @@
+#!/bin/bash
+if tmux ls; then tmux attach; else tmux new; fi
