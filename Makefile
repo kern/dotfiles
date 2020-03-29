@@ -12,3 +12,4 @@ install:
 	- ln -is $(CWD)/tmux/tmux.conf ~/.tmux.conf
 	- git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 	- $(CURDIR)/scripts/macos-defaults.sh
+	- $(CURDIR)/scripts/brew-install.sh

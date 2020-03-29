@@ -19,6 +19,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'ervandew/supertab'
 Plug 'exu/pgsql.vim'
 Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -213,7 +214,7 @@ let g:airline_powerline_fonts = 1
 " jsx
 let g:jsx_ext_required = 0
 let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
 " Highlight the current line number.
 function! <SID>SetCursorLine()
@@ -242,8 +243,9 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsList = "quickfix"
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': [system('PATH=$(npm bin):$PATH && which flow-language-server | tr -d "\n"'), '--stdio'],
-    \ 'javascript.jsx': [system('PATH=$(npm bin):$PATH && which flow-language-server | tr -d "\n"'), '--stdio'],
+    \ 'typescript': ['tcp://127.0.0.1:2089'],
+    \ 'javascript': ['tcp://127.0.0.1:2089'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ }
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -269,7 +271,7 @@ let g:airline#extensions#ale#enabled = 1
 highlight ALEWarning ctermbg=DarkRed
 let g:ale_fixers = {
     \ 'javascript': ['eslint'],
-    \ 'typescript': ['tslint'],
+    \ 'typescript': ['eslint'],
     \ 'ruby': ['rubocop'],
     \ 'graphql': ['prettier'],
     \ }
@@ -306,3 +308,6 @@ autocmd BufEnter *.rb nnoremap <Leader>tf :call RunCurrentSpecFile()<CR>
 autocmd BufEnter *.rb nnoremap <Leader>tt :call RunNearestSpec()<CR>
 autocmd BufEnter *.rb nnoremap <Leader>tl :call RunLastSpec()<CR>
 autocmd BufEnter *.rb nnoremap <Leader>ta :call RunAllSpecs()<CR>
+
+" vim-typescript
+autocmd BufEnter *.tsx set ft=typescript

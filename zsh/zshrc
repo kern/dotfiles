@@ -1,6 +1,7 @@
 # env
 export HOMEBREW="/usr/local"
 export EDITOR=nvim
+export VISUAL="$EDITOR"
 export PATH=$HOME/.dotfiles/bin:$PATH
 export CXXFLAGS="-I$HOMEBREW/include"
 export LDFLAGS="-L$HOMEBREW/lib"
@@ -11,27 +12,22 @@ export JUMPDIR=~/Projects
 # export PAGER=vimpager
 
 # base16
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[[ -n "$PS1" ]] && [[ -s $BASE16_SHELL/profile_helper.sh ]] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-syntax-highlighting
+if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# zsh-autosuggestions
+if [[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # prompt
 source $HOME/.dotfiles/zsh/zsh-git-prompt.sh
 export PROMPT='%B%~%b$(git_super_status) %F{magenta}%#%F{reset} '
-
-# aliases
-alias vim=nvim
-alias v=nvim
-alias gs='git status -sb'
-alias gcob='git checkout -b'
-alias gco='git checkout'
-alias gc='git commit -av'
-alias gb='git branch'
-alias gp='git push'
-alias l='exa'
 
 # complete
 autoload -U compinit && compinit
@@ -66,38 +62,70 @@ bindkey "^[^[[D" backward-word
 # option + delete
 bindkey "^[d" backward-kill-word
 
-# fzf & ripgrep
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# aliases
+alias vim=nvim
+alias v=nvim
+alias gs='git status -sb'
+alias gcob='git checkout -b'
+alias gco='git checkout'
+alias gc='git commit -av'
+alias gb='git branch'
+alias gp='git push'
+alias l='exa'
 
-# ruby
-if `which rbenv > /dev/null`; then eval "$(rbenv init -)"; fi
+# fzf & ripgrep
+if which rg 2>&1 > /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+  [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
+fi
+
+# rbenv
+if which rbenv 2>&1 > /dev/null; then eval "$(rbenv init -)"; fi
 
 # yarn
 export PATH="$HOME/.yarn/bin:$PATH"
 
 # kubectl
-source <(kubectl completion zsh)
+if which kubctl 2>&1 > /dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 # go
-export GOPATH="$HOME/Projects/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$GOBIN:$PATH"
-export GO111MODULE=on
+if which go 2>&1 > /dev/null; then
+  export GOPATH="$HOME/Projects/go"
+  export GOBIN="$GOPATH/bin"
+  export PATH="$GOBIN:$PATH"
+  export GO111MODULE=on
+fi
 
 # rustup
-if [ -f "$HOME/.cargo/env" ]; then source $HOME/.cargo/env; fi
+if [[ -f "$HOME/.cargo/env" ]]; then source "$HOME/.cargo/env"; fi
 
-# nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Google Cloud SDK
+if which gcloud 2>&1 > /dev/null; then
+  if [[ -f "/usr/local/Caskroom/google-cloud-sdk/path.zsh.inc" ]]; then source "/usr/local/Caskroom/google-cloud-sdk/path.zsh.inc"; fi
+  if [[ -f "/usr/local/Caskroom/google-cloud-sdk/completion.zsh.inc" ]]; then source "/usr/local/Caskroom/google-cloud-sdk/completion.zsh.inc"; fi
+fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/alexkern/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alexkern/google-cloud-sdk/path.zsh.inc'; fi
+# thefuck
+if which thefuck 2>&1 > /dev/null; then eval $(thefuck --alias); fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/alexkern/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alexkern/google-cloud-sdk/completion.zsh.inc'; fi
+# Fastlane
+if [[ -d "$HOME/.fastlane/bin" ]]; then export PATH="$HOME/.fastlane/bin:$PATH"; fi
 
 # Run local zshrc
 if [[ -f "$HOME/.zshrc.local" ]]; then . "$HOME/.zshrc.local"; fi
+
+# z
+if [[ -f "/usr/local/etc/profile.d/z.sh" ]]; then . "/usr/local/etc/profile.d/z.sh"; fi
+
+# Android Studio
+if [[ -d "$HOME/Library/Android/sdk" ]]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$PATH:$ANDROID_HOME/emulator
+  export PATH=$PATH:$ANDROID_HOME/tools
+  export PATH=$PATH:$ANDROID_HOME/tools/bin
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
