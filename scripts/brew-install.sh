@@ -35,6 +35,7 @@ brew cask install \
 	brave-browser \
 	superhuman \
 	fantastical \
+	bartender \
 	alfred
 
 # nerd-fonts
