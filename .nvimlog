@@ -1,2 +1,0 @@
-ERROR 2019-06-16T20:39:55.802 8092  libuv_process_spawn:79: uv_spawn failed: no such file or directory
-ERROR 2019-06-16T20:39:55.804 8092  libuv_process_spawn:79: uv_spawn failed: no such file or directory
