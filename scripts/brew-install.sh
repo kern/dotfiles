@@ -8,9 +8,11 @@ brew install \
   zsh \
   tmux \
   python3 \
+  node \
   neovim \
   rg \
   fzf \
+  cocoapods \
   zsh-syntax-highlighting \
   zsh-autosuggestions \
   reattach-to-user-namespace
@@ -36,6 +38,8 @@ brew cask install \
 	superhuman \
 	fantastical \
 	bartender \
+	geekbench \
+	little-snitch \
 	alfred
 
 # nerd-fonts
