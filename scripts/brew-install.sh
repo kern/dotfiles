@@ -31,6 +31,7 @@ brew cask install \
 	tunnelblick \
 	1password \
 	telegram \
+	arq \
 	google-chrome \
 	firefox \
 	google-drive-file-stream \
