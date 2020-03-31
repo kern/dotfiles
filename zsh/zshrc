@@ -15,14 +15,20 @@ export JUMPDIR=~/Projects
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [[ -n "$PS1" ]] && [[ -s $BASE16_SHELL/profile_helper.sh ]] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# zsh-syntax-highlighting
-if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# syntax highlighting
+if [[ `uname` = "Linux" ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ `uname` = "Darwin" ]]; then
+  # zsh-syntax-highlighting
+  if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
 
-# zsh-autosuggestions
-if [[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  # zsh-autosuggestions
+  if [[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
 fi
 
 # prompt
@@ -44,23 +50,25 @@ replace-in-dir() {
   ag -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
 }
 
-# history
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
+if [[ `uname` = "Darwin" ]]; then
+  # history
+  autoload -U history-search-end
+  zle -N history-beginning-search-backward-end history-search-end
+  zle -N history-beginning-search-forward-end history-search-end
+  bindkey "^[[A" history-beginning-search-backward-end
+  bindkey "^[[B" history-beginning-search-forward-end
 
-# command + left/right
-bindkey "^[a" beginning-of-line
-bindkey "^[e" end-of-line
+  # command + left/right
+  bindkey "^[a" beginning-of-line
+  bindkey "^[e" end-of-line
 
-# option + left/right
-bindkey "^[^[[C" forward-word
-bindkey "^[^[[D" backward-word
+  # option + left/right
+  bindkey "^[^[[C" forward-word
+  bindkey "^[^[[D" backward-word
 
-# option + delete
-bindkey "^[d" backward-kill-word
+  # option + delete
+  bindkey "^[d" backward-kill-word
+fi
 
 # aliases
 alias vim=nvim
@@ -86,7 +94,7 @@ if which rbenv 2>&1 > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.yarn/bin:$PATH"
 
 # kubectl
-if which kubctl 2>&1 > /dev/null; then
+if which kubectl 2>&1 > /dev/null; then
   source <(kubectl completion zsh)
 fi
 
