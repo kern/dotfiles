@@ -243,13 +243,17 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsList = "quickfix"
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'typescript': ['tcp://127.0.0.1:2089'],
-    \ 'javascript': ['tcp://127.0.0.1:2089'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript.tsx': ['javascript-typescript-stdio'],
+    \ }
+let g:LanguageClient_rootMarkers = {
+    \ 'typescript': ['tsconfig.json'],
     \ }
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <Leader>m :call LanguageClient_textDocument_rename()<CR>
 
 " Quickfix and Locations
 function! OpenQuickfix()

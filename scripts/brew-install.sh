@@ -41,6 +41,7 @@ brew cask install \
 	bartender \
 	geekbench \
 	little-snitch \
+	hazel \
 	alfred
 
 # nerd-fonts
