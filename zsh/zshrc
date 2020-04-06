@@ -88,7 +88,10 @@ if which rg 2>&1 > /dev/null; then
 fi
 
 # rbenv
-if which rbenv 2>&1 > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv 2>&1 > /dev/null; then
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  eval "$(rbenv init -)"
+fi
 
 # yarn
 export PATH="$HOME/.yarn/bin:$PATH"

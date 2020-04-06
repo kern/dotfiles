@@ -42,6 +42,7 @@ brew cask install \
 	geekbench \
 	little-snitch \
 	hazel \
+	rescuetime \
 	alfred
 
 # nerd-fonts
