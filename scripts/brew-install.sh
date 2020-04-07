@@ -43,6 +43,7 @@ brew cask install \
 	little-snitch \
 	hazel \
 	rescuetime \
+	teamviewer \
 	alfred
 
 # nerd-fonts
