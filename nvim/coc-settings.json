@@ -1,0 +1,5 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
+  "eslint.autoFixOnSave": true,
+  "coc.preferences.echodocSupport": true
+}

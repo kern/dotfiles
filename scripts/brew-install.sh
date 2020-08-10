@@ -44,6 +44,7 @@ brew cask install \
 	hazel \
 	rescuetime \
 	teamviewer \
+	keyboard-maestro \
 	alfred
 
 # nerd-fonts
