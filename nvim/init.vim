@@ -9,9 +9,9 @@ Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'b4winckler/vim-angry'
 Plug 'bling/vim-airline'
+Plug 'brooth/far.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -35,10 +35,14 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline-themes'
 
 " Language-specific plugins
-Plug 'sheerun/vim-polyglot'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/tagalong.vim'
 Plug 'fatih/vim-go'
-Plug 'thoughtbot/vim-rspec'
+Plug 'kern/vim-react-snippets'
 Plug 'lervag/vimtex'
+Plug 'sheerun/vim-polyglot'
+Plug 'thoughtbot/vim-rspec'
 
 " This must be imported last
 Plug 'ryanoasis/vim-devicons'
@@ -54,6 +58,7 @@ set nowritebackup
 set hidden
 set noswapfile
 set exrc
+set lazyredraw            " (far.vim) improve scrolling performance when navigating through large results
 set secure
 set scrolloff=3
 set re=0
@@ -198,16 +203,14 @@ nnoremap <leader>l :call OpenLocations()<CR>
 nnoremap <space> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
+" ripgrep
 nnoremap <leader>f :Rg 
 nnoremap <leader>k :Rg "\b<cword>\b" <CR>
-" ripgrep
-set grepprg=rg\ --vimgrep
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 
 " NERDTree
 " Leader-Leader to toggle NERDTree
@@ -233,9 +236,6 @@ let g:airline_powerline_fonts = 1
 " Leader-g to enable Goyo (distraction-free writing mode)
 nnoremap <Leader>g :Goyo <CR>
 
-" Supertab
-" let g:SuperTabDefaultCompletionType = "<c-n>"
-
 " Golang
 let g:go_fmt_command = "goimports"
 autocmd BufEnter *.go nnoremap <Leader>tf :GoTest<CR>
@@ -255,6 +255,40 @@ autocmd BufEnter *.rb nnoremap <Leader>ta :call RunAllSpecs()<CR>
 
 " LaTeX
 let g:tex_flavor = 'latex'
+
+" jsx
+let g:vim_jsx_pretty_highlight_close_tag = 1
+
+" sideways
+nnoremap mh :SidewaysLeft<CR>
+nnoremap ml :SidewaysRight<CR>
+
+" Coc.vim
+
+" gd for jump-to-definition
+nmap <silent> gd <Plug>(coc-definition)
+
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
+" https://github.com/neoclide/coc-snippets#examples
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Load .vimlocal
 silent! so .vimlocal
