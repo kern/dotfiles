@@ -129,12 +129,6 @@ if which thefuck 2>&1 > /dev/null; then eval $(thefuck --alias); fi
 # Fastlane
 if [[ -d "$HOME/.fastlane/bin" ]]; then export PATH="$HOME/.fastlane/bin:$PATH"; fi
 
-# Run local zshrc
-if [[ -f "$HOME/.zshrc.local" ]]; then . "$HOME/.zshrc.local"; fi
-
-# z
-if [[ -f "/usr/local/etc/profile.d/z.sh" ]]; then . "/usr/local/etc/profile.d/z.sh"; fi
-
 # Android Studio
 if [[ -d "$HOME/Library/Android/sdk" ]]; then
   export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -144,4 +138,25 @@ if [[ -d "$HOME/Library/Android/sdk" ]]; then
   export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# mcfly
+if which mcfly 2>&1 > /dev/null; then
+  eval "$(mcfly init zsh)"
+fi
+
+# zoxide
+if which zoxide 2>&1 > /dev/null; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
+
+# git wip
+if which gitupdate 2>&1 > /dev/null; then
+  wip() {
+    gitupdate .
+  }
+fi
+
+# Run local zshrc
+if [[ -f "$HOME/.zshrc.local" ]]; then . "$HOME/.zshrc.local"; fi

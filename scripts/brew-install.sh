@@ -15,7 +15,9 @@ brew install \
   cocoapods \
   zsh-syntax-highlighting \
   zsh-autosuggestions \
-  reattach-to-user-namespace
+  reattach-to-user-namespace \
+  broot \
+  zoxide
 
 # python3 pip modules
 python3 -m pip install pynvim
@@ -45,8 +47,14 @@ brew cask install \
 	rescuetime \
 	teamviewer \
 	keyboard-maestro \
-	alfred
+	alfred \
+	alacritty \
+	amethyst
 
 # nerd-fonts
 brew tap homebrew/cask-fonts
 brew cask install font-sourcecodepro-nerd-font-mono
+
+# mcfly
+brew tap cantino/mcfly
+brew install mcfly
