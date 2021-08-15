@@ -17,7 +17,8 @@ brew install \
   zsh-autosuggestions \
   reattach-to-user-namespace \
   broot \
-  zoxide
+  zoxide \
+  gh
 
 # python3 pip modules
 python3 -m pip install pynvim
