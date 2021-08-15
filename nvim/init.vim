@@ -5,6 +5,7 @@ endfunction
 call plug#begin('~/.config/nvim/bundle')
 
 " Vim editor plugins
+Plug 'AGhost-7/critiq.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'b4winckler/vim-angry'
