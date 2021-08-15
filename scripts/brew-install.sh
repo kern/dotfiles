@@ -18,7 +18,8 @@ brew install \
   reattach-to-user-namespace \
   broot \
   zoxide \
-  gh
+  gh \
+  git-delta
 
 # python3 pip modules
 python3 -m pip install pynvim
