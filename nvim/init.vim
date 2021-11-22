@@ -13,6 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'github/copilot.vim', {'branch': 'main'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'

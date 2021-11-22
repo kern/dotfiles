@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>AD200792-F0C1-41AF-B6FC-7F70BE6649A7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CBB0A776-6EFE-476F-8811-5BC95AD73551</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CBB0A776-6EFE-476F-8811-5BC95AD73551</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string></string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Elgato Light Control</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>QUERY=${1:-toggle}
+
+if [[ $QUERY = toggle ]]; then
+  ON=`curl $ELGATO_LIGHT_HOST:9123/elgato/lights | /usr/local/bin/jq ".lights[0].on"`
+  if [[ $ON = 0 ]]; then
+    ON=1
+  else
+    ON=0
+  fi
+elif [[ $QUERY = on ]]; then
+  ON=1
+else
+  ON=0
+fi
+
+curl -X PUT \
+  $ELGATO_LIGHT_HOST:9123/elgato/lights \
+  -H Content-Type:application/json \
+  --data '{"Lights":[{"Temperature":344,"Brightness":20,"On":'$ON'}],"NumberOfLights":1}'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CBB0A776-6EFE-476F-8811-5BC95AD73551</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>light</string>
+				<key>subtext</key>
+				<string>Turn the Elgato Key Air light on or off</string>
+				<key>text</key>
+				<string>light</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>AD200792-F0C1-41AF-B6FC-7F70BE6649A7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>AD200792-F0C1-41AF-B6FC-7F70BE6649A7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>225</integer>
+			<key>ypos</key>
+			<integer>155</integer>
+		</dict>
+		<key>CBB0A776-6EFE-476F-8811-5BC95AD73551</key>
+		<dict>
+			<key>xpos</key>
+			<integer>455</integer>
+			<key>ypos</key>
+			<integer>155</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>ELGATO_LIGHT_HOST</key>
+		<string>kern.local.</string>
+	</dict>
+	<key>version</key>
+	<string></string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
