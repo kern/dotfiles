@@ -9,7 +9,7 @@
     <array>
       <string>/opt/homebrew/bin/zsh</string>
       <string>-c</string>
-      <string>source /Users/ask/.zshrc.local &amp;&amp; /opt/homebrew/opt/python/libexec/bin/python /Users/ask/.dotfiles/raycast/listen-for-camera.py</string>
+      <string>source /Users/ask/.zshrc.local &amp;&amp; /opt/homebrew/opt/python/libexec/bin/python /Users/ask/.dotfiles/automation/listen-for-camera.py</string>
     </array>
 
     <key>UserName</key>
