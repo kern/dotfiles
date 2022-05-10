@@ -25,7 +25,7 @@ brew install \
 python3 -m pip install pynvim
 
 # casks
-brew cask install \
+brew install \
 	docker \
 	iterm2 \
 	slack \
@@ -55,7 +55,7 @@ brew cask install \
 
 # nerd-fonts
 brew tap homebrew/cask-fonts
-brew cask install font-sourcecodepro-nerd-font-mono
+brew install font-sourcecodepro-nerd-font-mono
 
 # mcfly
 brew tap cantino/mcfly

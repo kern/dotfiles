@@ -11,6 +11,11 @@ export LD_LIBRARY_PATH="$DYLD_LIBRARY_PATH"
 export JUMPDIR=~/Projects
 # export PAGER=vimpager
 
+# brew
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # base16
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [[ -n "$PS1" ]] && [[ -s $BASE16_SHELL/profile_helper.sh ]] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -158,5 +163,12 @@ if which gitupdate 2>&1 > /dev/null; then
   }
 fi
 
+# python3
+if [[ -d "/opt/homebrew/opt/python/libexec/bin" ]]; then
+  export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
+fi
+
 # Run local zshrc
 if [[ -f "$HOME/.zshrc.local" ]]; then . "$HOME/.zshrc.local"; fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

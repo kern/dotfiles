@@ -197,11 +197,11 @@ background_opacity: 1.0
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /usr/local/bin/zsh
+  program: /opt/homebrew/bin/zsh
   args:
     - --login
-    - -c
-    - ~/.dotfiles/bin/tmux-launch
+    # - -c
+    # - ~/.dotfiles/bin/tmux-launch
 
 # Startup directory
 #

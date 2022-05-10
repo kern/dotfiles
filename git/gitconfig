@@ -1,7 +1,7 @@
 [user]
 name = Alex Kern
 email = alex@kern.io
-signingkey = AF1A56F2782DFAFAA2C83305F3141D5EDF48F89F
+signingkey = 7C270B69AE6995E347736859EF051FACCACBEE25
 
 [color]
 diff = auto
@@ -34,7 +34,7 @@ process = git-lfs filter-process
 required = true
 
 [commit]
-gpgsign = false
+gpgsign = true
 
 [pager]
 diff = delta
@@ -59,3 +59,6 @@ hunk-header-decoration-style = blue box
 hunk-header-file-style = red
 hunk-header-line-number-style = "#067a00"
 hunk-header-style = file line-number syntax
+
+[gpg]
+program = gpg

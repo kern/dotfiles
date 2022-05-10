@@ -13,7 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'github/copilot.vim', {'branch': 'main'}
+Plug 'github/copilot.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -51,7 +51,7 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-set shell=/usr/local/bin/zsh
+set shell=/opt/homebrew/bin/zsh
 set number
 set mouse=a
 set noshowmode
@@ -267,8 +267,11 @@ nnoremap ml :SidewaysRight<CR>
 
 " Coc.vim
 
-" gd for jump-to-definition
+" go-to code navigation
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
 " https://github.com/neoclide/coc-snippets#examples

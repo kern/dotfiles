@@ -1,5 +1,8 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
   "eslint.autoFixOnSave": true,
-  "coc.preferences.echodocSupport": true
+  "coc.preferences.echodocSupport": true,
+  "tsserver.enable": true,
+  "typescript.updateImportsOnFileMove.enable": true,
+  "javascript.updateImportsOnFileMove.enable": true
 }
