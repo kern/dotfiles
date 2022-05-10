@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>io.kern.listen-on-camera</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/homebrew/bin/zsh</string>
+      <string>-c</string>
+      <string>source /Users/ask/.zshrc.local &amp;&amp; /opt/homebrew/opt/python/libexec/bin/python /Users/ask/.dotfiles/raycast/listen-for-camera.py</string>
+    </array>
+
+    <key>UserName</key>
+    <string>ask</string>
+
+    <key>StartInterval</key>
+    <integer>5</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/ask/Library/Kern.io/lights.out</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/ask/Library/Kern.io/lights.err</string>
+  </dict>
+</plist>

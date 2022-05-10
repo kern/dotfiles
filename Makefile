@@ -1,7 +1,6 @@
-.PHONY: install
-
 CWD := $(shell pwd)
 
+.PHONY: install
 install:
 	mkdir -p ~/.config
 	mkdir -p ~/.config/alacritty
@@ -17,3 +16,14 @@ install:
 	- $(CURDIR)/scripts/macos-defaults.sh
 	- $(CURDIR)/scripts/brew-install.sh
 	- $(CURDIR)/scripts/go-install.sh
+
+.PHONY: install/listen-on-camera
+install/listen-on-camera:
+	- mkdir -p ~/Library/Kern.io
+	- mkdir -p ~/Library/LaunchAgents
+	- ln -is $(CWD)/automation/io.kern.listen-on-camera.plist ~/Library/LaunchAgents/io.kern.listen-on-camera.plist
+	- launchctl load ~/Library/LaunchAgents/io.kern.listen-on-camera.plist
+
+.PHONY: install/listen-on-camera/upload
+install/listen-on-camera/unload:
+	- launchctl unload ~/Library/LaunchAgents/io.kern.listen-on-camera.plist
