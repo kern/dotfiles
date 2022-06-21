@@ -8,6 +8,7 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'AGhost-7/critiq.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'b4winckler/vim-angry'
 Plug 'bling/vim-airline'
 Plug 'brooth/far.vim'
@@ -26,6 +27,7 @@ Plug 'justinmk/vim-sneak'
 " Plug 'kana/vim-textobj-indent'
 " Plug 'kana/vim-textobj-user'
 Plug 'kergoth/vim-hilinks'
+Plug 'kosayoda/nvim-lightbulb'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
@@ -359,6 +361,12 @@ require'nvim-treesitter.configs'.setup {
 require'nvim-tree'.setup {
 }
 
+require('nvim-lightbulb').setup({
+  autocmd = {
+    enabled = true
+  }
+})
+
 -- require("typescript").setup {
 --   server = {
 --     on_attach = on_attach,
@@ -372,7 +380,7 @@ require'nvim-tree'.setup {
 EOF
 
 " eslint language server
-autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+" autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 " Load .vimlocal
 silent! so .vimlocal
