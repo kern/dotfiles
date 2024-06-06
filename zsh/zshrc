@@ -172,3 +172,10 @@ fi
 if [[ -f "$HOME/.zshrc.local" ]]; then . "$HOME/.zshrc.local"; fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ask/.bun/_bun" ] && source "/Users/ask/.bun/_bun"
+
+# bun
+export BUN_INSTALL="/Users/ask/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
