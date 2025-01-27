@@ -36,9 +36,10 @@ elif [[ `uname` = "Darwin" ]]; then
   fi
 fi
 
-# prompt
-source $HOME/.dotfiles/zsh/zsh-git-prompt.sh
-export PROMPT='%B%~%b$(git_super_status) %F{magenta}%#%F{reset} '
+# git prompt
+autoload -U add-zsh-hook
+source $HOME/.dotfiles/zsh/git-prompt.zsh
+source $HOME/.dotfiles/zsh/multiline-prompt.zsh
 
 # complete
 autoload -U compinit && compinit
@@ -77,14 +78,18 @@ fi
 
 # aliases
 alias vim=nvim
-alias v=nvim
+function v() {
+  nvim ${1:-.}
+}
 alias gs='git status -sb'
 alias gcob='git checkout -b'
 alias gco='git checkout'
 alias gc='git commit -av'
 alias gb='git branch'
-alias gp='git push'
+alias gp='git push origin `git branch --show-current`'
+alias gpf='git push --force origin `git branch --show-current`'
 alias l='exa'
+alias vdot="cd $HOME/.dotfiles && v"
 
 # fzf & ripgrep
 if which rg 2>&1 > /dev/null; then
@@ -98,12 +103,6 @@ if which rbenv 2>&1 > /dev/null; then
   eval "$(rbenv init -)"
 fi
 
-# node 14 LTS
-if [[ -d "/usr/local/opt/node@14/bin" ]]; then
-  export PATH="/usr/local/opt/node@14/bin:$PATH"
-  export LDFLAGS="-L/usr/local/opt/node@14/lib"
-  export CPPFLAGS="-I/usr/local/opt/node@14/include"
-fi
 
 # yarn
 export PATH="$HOME/.yarn/bin:$PATH"
@@ -179,3 +178,45 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # bun
 export BUN_INSTALL="/Users/ask/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# zshrc
+alias editzsh="nvim ~/.zshrc"
+alias sourcezsh="source ~/.zshrc"
+
+# fastrebase
+function fastrebase() {
+  git fetch origin
+  UPSTREAM_BRANCH="${1:-origin/master}"
+  MERGE_BASE=`git merge-base "$UPSTREAM_BRANCH" HEAD`
+  if [[ -n "$(git status -s)" ]]; then
+    echo "here"
+    if read -q "choice?You have unstaged changes. Do you wish to stash changes? [yn] "; then
+      git add .
+      git stash
+    else
+      return
+    fi
+  fi
+  git branch kern/backups/`date +%s`
+  git reset --soft "$MERGE_BASE"
+  git commit -n --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
+  git rebase "$UPSTREAM_BRANCH"
+}
+
+# irebase
+function irebase() {
+  git fetch origin
+  UPSTREAM_BRANCH="${1:-origin/master}"
+  MERGE_BASE=`git merge-base "$UPSTREAM_BRANCH" HEAD`
+  if [[ -n "$(git status -s)" ]]; then
+    echo "here"
+    if read -q "choice?You have unstaged changes. Do you wish to stash changes? [yn] "; then
+      git add .
+      git stash
+    else
+      return
+    fi
+  fi
+  git branch kern/backups/`date +%s`
+  git rebase -i "$UPSTREAM_BRANCH"
+}

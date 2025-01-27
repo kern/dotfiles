@@ -1,0 +1,30 @@
+# NOTE: reload config on Linux (ctrl+shift+,) or macOS (cmd+shift+,)
+
+# Set the terminal theme
+theme = catppuccin-macchiato
+
+# Give the window a little padding
+window-padding-x = 16
+window-padding-y = 12
+
+# No titlebar proxy icon on macOS
+macos-titlebar-proxy-icon = hidden
+
+# Set the default font (disabled: doesn't work with emoji yet)
+# font-family = SauceCodePro Nerd Font Mono
+
+# Set default font size to 9px
+font-size = 9
+
+# Give each line a bit more breathing room
+adjust-cell-height = 10%
+
+# macOS-like key bindings for tmux
+keybind = cmd+t=text:\x01\x63
+keybind = cmd+d=text:\x01\x25
+keybind = cmd+w=text:\x01\x78
+keybind = cmd+shift+d=text:\x01\x22
+keybind = cmd+[=text:\x01\x70
+keybind = cmd+]=text:\x01\x6e
+keybind = cmd+shift+[=text:\x01\x70
+keybind = cmd+shift+]=text:\x01\x6e

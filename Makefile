@@ -5,6 +5,8 @@ install:
 	mkdir -p ~/.config
 	mkdir -p ~/.config/alacritty
 	- ln -Fis $(CWD)/nvim ~/.config
+	- ln -Fis $(CWD)/kitty ~/.config
+	- ln -Fis $(CWD)/ghostty ~/.config
 	- ln -is $(CWD)/zsh/zshrc ~/.zshrc
 	- ln -is $(CWD)/other/hushlogin ~/.hushlogin
 	- ln -is $(CWD)/git/gitignore ~/.gitignore
@@ -16,6 +18,11 @@ install:
 	- $(CURDIR)/scripts/macos-defaults.sh
 	- $(CURDIR)/scripts/brew-install.sh
 	- $(CURDIR)/scripts/go-install.sh
+
+.PHONY: update/kitty
+update/kitty:
+	wget "https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/gruvbox_dark.conf" \
+		-P ~/.config/kitty/kitty-themes/themes
 
 .PHONY: install/listen-on-camera
 install/listen-on-camera:
